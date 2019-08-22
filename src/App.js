@@ -1,24 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [scrollEnabled, setScrollEnabled] = useState(true);
+  const handlePointerEvent = event => {
+    switch (event.type) {
+      case 'pointermove':
+        setScrollEnabled(false);
+        console.log(`${event.type}: scroll DISABLED`);
+        break;
+
+      default:
+        setScrollEnabled(true);
+        console.log(`${event.type}: scroll ENABLED`);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="root">
+      <div className="touch-area">
+        <div
+          className="touch-area-inner"
+          style={scrollEnabled ? { overflowX: 'scroll' } : { overflowX: 'hidden' }}
+          onPointerEnter={handlePointerEvent}
+          onPointerLeave={handlePointerEvent}
+          onPointerMove={handlePointerEvent}
+          onPointerUp={handlePointerEvent}
+          onPointerDown={handlePointerEvent}
+          onPointerOver={handlePointerEvent}
         >
-          Learn React
-        </a>
-      </header>
+          {[...Array(15)].map((box, index) =>
+            <div key={index} className="box">
+              <div className="box-inner">{index}</div>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
