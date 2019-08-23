@@ -1,43 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import SwipeableRoutes from "react-swipeable-routes";
+
+import { RedView, BlueView, GreenView, YellowView } from './Views';
 import './App.css';
 
 const App = () => {
-  const [scrollEnabled, setScrollEnabled] = useState(true);
-  const handlePointerEvent = event => {
-    switch (event.type) {
-      case 'pointermove':
-        setScrollEnabled(false);
-        console.log(`${event.type}: scroll DISABLED`);
-        break;
-
-      default:
-        setScrollEnabled(true);
-        console.log(`${event.type}: scroll ENABLED`);
-    }
-  };
-
   return (
-    <div className="root">
-      <div className="touch-area">
-        <div
-          className="touch-area-inner"
-          style={scrollEnabled ? { overflowX: 'scroll' } : { overflowX: 'hidden' }}
-          onPointerEnter={handlePointerEvent}
-          onPointerLeave={handlePointerEvent}
-          onPointerMove={handlePointerEvent}
-          onPointerUp={handlePointerEvent}
-          onPointerDown={handlePointerEvent}
-          onPointerOver={handlePointerEvent}
-        >
-          {[...Array(15)].map((box, index) =>
-            <div key={index} className="box">
-              <div className="box-inner">{index}</div>
-            </div>
-          )}
+    <Router>
+      <div className="root">
+        <div className="header">
+          <Link to="/red">Red</Link> | <Link to="/blue">Blue</Link> | <Link to="/green">Green</Link> | <Link to="/yellow">Yellow</Link>
         </div>
+          <SwipeableRoutes>
+            <Route path="/red" component={RedView} />
+            <Route path="/blue" component={BlueView} />
+            <Route path="/green" component={GreenView} />
+            <Route path="/yellow" component={YellowView} />
+          </SwipeableRoutes>
       </div>
-    </div>
-  );
-}
+    </Router>);
+};
 
 export default App;
