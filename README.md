@@ -14,6 +14,7 @@
 
 - If we need to check the behaviour of the app in the real device and at the same time be able to debug a feature.
 - If we need to check a different behaviour when the user uses the application in a computer browser or in a portable device browser.
+- Easy and fast alternative to Android Studio for debugging.
 
 ## Limitations
 
