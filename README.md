@@ -1,5 +1,7 @@
 # Knowledge Sharing - How to debug in a remote device using Chrome Developer Tools
 
+**Category**: Knowledge Sharing
+
 ## What is Remote Debugging?
 
 [Remote Debugging](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/) lets you inspect a page running on an Android device from your development machine.
